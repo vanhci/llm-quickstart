@@ -8,6 +8,8 @@ LangChain ConversationalAgent：带记忆的对话助手
 """
 
 import os
+import ast
+import operator
 from langchain_openai import ChatOpenAI
 from langchain.agents import initialize_agent, AgentType
 from langchain.tools import tool
@@ -23,9 +25,28 @@ def get_weather(city: str) -> str:
 @tool
 def calculate(expression: str) -> str:
     """计算数学表达式"""
+    allowed_ops = {
+        ast.Add: operator.add,
+        ast.Sub: operator.sub,
+        ast.Mult: operator.mul,
+        ast.Div: operator.truediv,
+        ast.USub: operator.neg,
+    }
+
+    def eval_node(node):
+        if isinstance(node, ast.Expression):
+            return eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.left), eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.operand))
+        raise ValueError("只支持数字和四则运算")
+
     try:
-        return str(eval(expression))
-    except:
+        return str(eval_node(ast.parse(expression, mode="eval")))
+    except Exception:
         return "计算失败"
 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)

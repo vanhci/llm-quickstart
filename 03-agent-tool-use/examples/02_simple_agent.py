@@ -8,6 +8,9 @@
 """
 
 import os
+import json
+import ast
+import operator
 from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -25,15 +28,60 @@ def search_web(query: str) -> str:
 
 def calculate(expression: str) -> str:
     """模拟计算器"""
+    allowed_ops = {
+        ast.Add: operator.add,
+        ast.Sub: operator.sub,
+        ast.Mult: operator.mul,
+        ast.Div: operator.truediv,
+        ast.USub: operator.neg,
+    }
+
+    def eval_node(node):
+        if isinstance(node, ast.Expression):
+            return eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.left), eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.operand))
+        raise ValueError("只支持数字和四则运算")
+
     try:
-        result = eval(expression)
+        result = eval_node(ast.parse(expression, mode="eval"))
         return str(result)
-    except:
+    except Exception:
         return "计算表达式无效"
 
 TOOLS = [
-    {"name": "search_web", "description": "搜索网络信息，输入搜索关键词", "params": ["query"]},
-    {"name": "calculate", "description": "执行数学计算", "params": ["expression"]},
+    {
+        "type": "function",
+        "function": {
+            "name": "search_web",
+            "description": "搜索网络信息，输入搜索关键词",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "搜索关键词"}
+                },
+                "required": ["query"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "calculate",
+            "description": "执行简单数学计算，只允许数字和四则运算符",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "expression": {"type": "string", "description": "数学表达式，如：(123 + 456) * 2"}
+                },
+                "required": ["expression"],
+            },
+        },
+    },
 ]
 
 
@@ -61,6 +109,8 @@ def simple_agent(question: str) -> str:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
+            tools=TOOLS,
+            tool_choice="auto",
         )
 
         assistant_msg = response.choices[0].message
@@ -73,7 +123,7 @@ def simple_agent(question: str) -> str:
         # 执行工具调用
         for call in assistant_msg.tool_calls:
             fn_name = call.function.name
-            args = eval(call.function.arguments)
+            args = json.loads(call.function.arguments or "{}")
 
             if fn_name == "search_web":
                 result = search_web(**args)

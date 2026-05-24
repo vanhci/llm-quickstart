@@ -8,6 +8,9 @@
 """
 
 import os
+import json
+import ast
+import operator
 from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -22,9 +25,28 @@ def search(query: str) -> str:
     return data.get(query, f"找到关于'{query}'的信息")
 
 def calculate(expr: str) -> str:
+    allowed_ops = {
+        ast.Add: operator.add,
+        ast.Sub: operator.sub,
+        ast.Mult: operator.mul,
+        ast.Div: operator.truediv,
+        ast.USub: operator.neg,
+    }
+
+    def eval_node(node):
+        if isinstance(node, ast.Expression):
+            return eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.left), eval_node(node.right))
+        if isinstance(node, ast.UnaryOp) and type(node.op) in allowed_ops:
+            return allowed_ops[type(node.op)](eval_node(node.operand))
+        raise ValueError("只支持数字和四则运算")
+
     try:
-        return str(eval(expr))
-    except:
+        return str(eval_node(ast.parse(expr, mode="eval")))
+    except Exception:
         return "计算失败"
 
 def send_email(to: str, content: str) -> str:
@@ -39,6 +61,60 @@ TOOLS = {
     "send_email": send_email,
     "web_scraper": web_scraper,
 }
+
+TOOL_SCHEMAS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "search",
+            "description": "搜索信息",
+            "parameters": {
+                "type": "object",
+                "properties": {"query": {"type": "string", "description": "搜索关键词"}},
+                "required": ["query"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "calculate",
+            "description": "执行简单数学计算",
+            "parameters": {
+                "type": "object",
+                "properties": {"expr": {"type": "string", "description": "数学表达式"}},
+                "required": ["expr"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "send_email",
+            "description": "发送邮件。真实生产环境中，这类工具必须先请求用户确认。",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "to": {"type": "string", "description": "收件人邮箱"},
+                    "content": {"type": "string", "description": "邮件内容"},
+                },
+                "required": ["to", "content"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "web_scraper",
+            "description": "抓取网页摘要",
+            "parameters": {
+                "type": "object",
+                "properties": {"url": {"type": "string", "description": "网页 URL"}},
+                "required": ["url"],
+            },
+        },
+    },
+]
 
 
 def workflow_agent(task: str) -> str:
@@ -74,6 +150,8 @@ def workflow_agent(task: str) -> str:
         resp = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
+            tools=TOOL_SCHEMAS,
+            tool_choice="auto",
         )
         msg = resp.choices[0].message
         messages.append(msg)
@@ -89,7 +167,7 @@ def workflow_agent(task: str) -> str:
         if msg.tool_calls:
             for call in msg.tool_calls:
                 fn = call.function.name
-                args = eval(call.function.arguments)
+                args = json.loads(call.function.arguments or "{}")
                 print(f"  🎬 步骤{step+1}: {fn}({args})")
 
                 if fn in TOOLS:

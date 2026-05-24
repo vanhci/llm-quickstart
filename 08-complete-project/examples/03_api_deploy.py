@@ -60,16 +60,22 @@ def ask_question(req: QuestionRequest):
     """问答接口"""
     if DB is None:
         raise HTTPException(503, "服务未初始化")
+    if LLM is None:
+        raise HTTPException(503, "模型未初始化")
+    if not req.question.strip():
+        raise HTTPException(400, "问题不能为空")
+    if req.top_k < 1 or req.top_k > 10:
+        raise HTTPException(400, "top_k 必须在 1 到 10 之间")
 
     docs = DB.similarity_search(req.question, k=req.top_k)
-    context = "\n\n".join(d.text for d in docs)
+    context = "\n\n".join(d.page_content for d in docs)
 
     prompt = f"基于以下内容回答：\n{context}\n\n问题：{req.question}"
     response = LLM.invoke([{"role": "user", "content": prompt}])
 
     return AnswerResponse(
         answer=response.content,
-        sources=[d.text for d in docs]
+        sources=[d.page_content for d in docs]
     )
 
 

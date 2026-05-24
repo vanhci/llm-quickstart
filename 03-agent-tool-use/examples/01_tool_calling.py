@@ -8,6 +8,7 @@
 """
 
 import os
+import json
 from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -70,13 +71,15 @@ def ask_with_tool(user_question: str) -> str:
     if assistant_message.tool_calls:
         tool_call = assistant_message.tool_calls[0]
         function_name = tool_call.function.name
-        arguments = eval(tool_call.function.arguments)  # 将 JSON 转成 dict
+        arguments = json.loads(tool_call.function.arguments or "{}")
 
         print(f"🤖 模型决定调用工具：{function_name}({arguments})")
 
         # 执行工具
         if function_name == "get_weather":
             result = get_weather(**arguments)
+        else:
+            result = f"未知工具：{function_name}"
 
         # 把工具结果反馈给模型
         messages.append(assistant_message)
