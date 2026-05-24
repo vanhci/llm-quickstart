@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 客服机器人：四种 Provider 一键切换
-功能：电商客服自动回复，支持 OpenAI / DeepSeek / Groq / Ollama
+功能：电商客服自动回复，支持 OpenAI / DeepSeek / MiniMax / Ollama
 运行：python 02_customer_bot_multi_provider.py
 依赖：pip install openai
 """
@@ -23,10 +23,10 @@ PROVIDER_CONFIGS = {
         "base_url": "https://api.deepseek.com",
         "model": "deepseek-chat",
     },
-    "groq": {
-        "api_key": os.environ.get("GROQ_API_KEY", ""),
-        "base_url": "https://api.groq.com/openai/v1",
-        "model": "llama-3.2-3b-preview",
+    "minimax": {
+        "api_key": os.environ.get("MINIMAX_API_KEY", ""),
+        "base_url": "https://api.minimaxi.com/v1",
+        "model": "MiniMax-M2.7",
     },
     "ollama": {
         "api_key": "ollama",

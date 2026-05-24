@@ -17,8 +17,7 @@ OpenAI API 在国内：
 |------|------|---------|------|---------|
 | **Ollama（本地）** | 完全免费 | ✅ | 慢（本地） | 学习、测试 |
 | **DeepSeek** | 极低（¥1/百万token） | ✅ | 快 | 生产环境 |
-| **Groq** | 免费额度充足 | ✅ | 极快 | 快速原型 |
-| **硅基流动** | 有免费额度 | ✅ | 快 | 国内开发者 |
+| **MiniMax Token Plan** | 订阅额度 / 按量 | ✅ | 快 | 原型、生产 |
 
 ---
 
@@ -77,42 +76,29 @@ response = client.chat.completions.create(
 
 ---
 
-## 3. Groq：极速免费
+## 3. MiniMax：Token Plan / OpenAI 兼容
 
-**特点：** 速度快到离谱（1000 token/s），免费额度够用。
+**特点：** 兼容 OpenAI SDK，可用 Token Plan Key 或普通 API Key 接入。
 
 ```python
 from openai import OpenAI
 
 client = OpenAI(
-    api_key="gsk_xxxxx",  # 从 Groq 平台获取
-    base_url="https://api.groq.com/openai/v1"
+    api_key="mm-xxxxx",  # 从 MiniMax 平台获取
+    base_url="https://api.minimaxi.com/v1"
 )
 
 response = client.chat.completions.create(
-    model="llama-3.2-3b-preview",
+    model="MiniMax-M2.7",
     messages=[{"role": "user", "content": "你好"}]
 )
 ```
 
-**注册地址：** https://console.groq.com（用 Google 账号即可）
+**模型：**
+- `MiniMax-M2.7`
+- `MiniMax-M2.7-highspeed`
 
----
-
-## 4. 硅基流动：国内聚合平台
-
-**特点：** 聚合多个模型，国内网络直连，有免费额度。
-
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    api_key="sk-xxxxx",  # 从硅基流动获取
-    base_url="https://api.siliconflow.cn/v1"
-)
-```
-
-**注册地址：** https://cloud.siliconflow.cn
+**说明：** Token Plan 适合学习和持续使用，OpenAI 兼容接口可直接接入现有代码。
 
 ---
 
@@ -137,10 +123,10 @@ PROVIDER_CONFIGS = {
         "base_url": "https://api.deepseek.com",
         "model": "deepseek-chat",
     },
-    "groq": {
-        "api_key": os.environ.get("GROQ_API_KEY"),
-        "base_url": "https://api.groq.com/openai/v1",
-        "model": "llama-3.2-3b-preview",
+    "minimax": {
+        "api_key": os.environ.get("MINIMAX_API_KEY"),
+        "base_url": "https://api.minimaxi.com/v1",
+        "model": "MiniMax-M2.7",
     },
     "ollama": {
         "api_key": "ollama",  # 固定值，Ollama 不需要真 key
@@ -170,9 +156,9 @@ export LLM_PROVIDER=deepseek
 export DEEPSEEK_API_KEY=sk-xxx
 python app.py
 
-# 换成 Groq（只要换两个环境变量）
-export LLM_PROVIDER=groq
-export GROQ_API_KEY=gsk_xxx
+# 换成 MiniMax
+export LLM_PROVIDER=minimax
+export MINIMAX_API_KEY=mm_xxx
 python app.py
 ```
 

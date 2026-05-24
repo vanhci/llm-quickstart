@@ -89,3 +89,4 @@ python examples/01_knowledge_base_setup.py
 
 模型名、价格、免费额度可能变化。真实项目请以各平台官方文档为准。
 
+MiniMax 官方 OpenAI 兼容接口可用 `https://api.minimaxi.com/v1`，模型示例为 `MiniMax-M2.7`。

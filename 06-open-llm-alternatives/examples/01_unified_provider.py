@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 """
 统一 Provider 封装：四种 LLM 一键切换
-功能：DeepSeek / Groq / 硅基流动 / Ollama 只需改 1 行配置
+功能：OpenAI / DeepSeek / MiniMax / Ollama 只需改 1 行配置
 运行：python 01_unified_provider.py
 依赖：pip install openai
-环境变量：LLM_PROVIDER（openai/deepseek/groq/ollama）+ 对应 API Key
+环境变量：LLM_PROVIDER（openai/deepseek/minimax/ollama）+ 对应 API Key
 """
 
 import os
 from openai import OpenAI
 
 # ============ 只需改这里 ============
-# 可选值：openai / deepseek / groq / ollama
+# 可选值：openai / deepseek / minimax / ollama
 PROVIDER = os.environ.get("LLM_PROVIDER", "deepseek")
 # ====================================
 
@@ -28,10 +28,10 @@ PROVIDER_CONFIGS = {
         "base_url": "https://api.deepseek.com",
         "model": "deepseek-chat",
     },
-    "groq": {
-        "api_key": os.environ.get("GROQ_API_KEY", ""),
-        "base_url": "https://api.groq.com/openai/v1",
-        "model": "llama-3.2-3b-preview",
+    "minimax": {
+        "api_key": os.environ.get("MINIMAX_API_KEY", ""),
+        "base_url": "https://api.minimaxi.com/v1",
+        "model": "MiniMax-M2.7",
     },
     "ollama": {
         "api_key": "ollama",  # Ollama 不需要真实 key

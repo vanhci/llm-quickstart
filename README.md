@@ -42,7 +42,7 @@
 | Day 3 | [Agent 与工具调用](./03-agent-tool-use/) | Function calling、ReAct、多步骤执行 |
 | Day 4 | [向量数据库](./04-vector-db/) | 向量相似度、ChromaDB 基础操作 |
 | Day 5 | [生产级实践](./05-production/) | 日志、成本控制、简单评估 |
-| Day 6 | [模型替代方案](./06-open-llm-alternatives/) | OpenAI、DeepSeek、Groq、Ollama、硅基流动 |
+| Day 6 | [模型替代方案](./06-open-llm-alternatives/) | OpenAI、DeepSeek、MiniMax、Ollama |
 | Day 7 | [LangChain 快速入门](./07-langchain-fast-start/) | Chain、Retriever、Agent 快速原型 |
 | Day 8 | [完整项目实战](./08-complete-project/) | 私有知识库、API、Docker 部署 |
 
@@ -63,7 +63,7 @@
 - FastAPI + uvicorn
 - LangChain / LangGraph 思路
 - Docker / docker-compose
-- 可选模型 Provider：OpenAI、DeepSeek、Groq、Ollama、硅基流动
+- 可选模型 Provider：OpenAI、DeepSeek、MiniMax、Ollama
 
 ## 快速开始
 

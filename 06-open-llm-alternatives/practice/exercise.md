@@ -25,17 +25,17 @@ python 02_customer_bot_multi_provider.py
 
 ---
 
-### 题2：给统一封装添加硅基流动
+### 题2：给统一封装添加 MiniMax
 
-**题目：** 在 `PROVIDER_CONFIGS` 中添加硅基流动（SiliconFlow），需要什么配置？
+**题目：** 在 `PROVIDER_CONFIGS` 中添加 MiniMax Token Plan，需要什么配置？
 
 **参考答案：**
 ```python
-"siliconflow": {
-    "api_key": os.environ.get("SILICONFLOW_API_KEY", ""),
-    "base_url": "https://api.siliconflow.cn/v1",
-    "model": "Qwen/Qwen2.5-7B-Instruct",  # 或其他可用模型
+"minimax": {
+    "api_key": os.environ.get("MINIMAX_API_KEY", ""),
+    "base_url": "https://api.minimaxi.com/v1",
+    "model": "MiniMax-M2.7",  # 或 MiniMax-M2.7-highspeed
 },
 ```
 
-注册地址：https://cloud.siliconflow.cn（送免费额度）
+注册地址：https://platform.minimaxi.com
