@@ -10,10 +10,7 @@
 | Day 2 | [RAG 核心](./02-rag-basics/) | 让模型"读懂"你的知识库 |
 | Day 3 | [Agent 与工具调用](./03-agent-tool-use/) | 让模型帮你执行操作 |
 | Day 4 | [向量数据库](./04-vector-db/) | 理解 Embedding 与相似度检索 |
-| Day 5 | [生产级实践](./05-production/) | 监控、成本控制、评估 |
-| Day 6 | [替代方案](./06-open-llm-alternatives/) | 国内可用：Ollama / DeepSeek / Groq |
-| Day 7 | [LangChain 快速入门](./07-langchain-fast-start/) | 用主流框架快速搭 LLM 应用 |
-| Day 8 | [完整项目实战](./08-complete-project/) | 从 0 搭建可部署的私有知识库系统 |
+| Day 5 | [综合应用](./05-production/) | 监控评估 + LangChain 快速入门 + 完整项目实战 |
 
 ## 🛠️ 技术栈
 
@@ -21,6 +18,8 @@
 - OpenAI SDK (`pip install openai`)
 - ChromaDB（向量数据库）
 - **多 Provider 支持**：OpenAI / DeepSeek / Groq / Ollama / 硅基流动
+- **主流框架**：LangChain（快速搭 RAG 和 Agent 原型）
+- **API 部署**：FastAPI + uvicorn + Docker
 
 ## 🚀 快速开始
 
@@ -55,17 +54,8 @@ python 01-prompt-engineering/examples/01_basic.py
 ### Day 4 · 向量数据库
 理解 Embedding 的本质，掌握相似度检索的原理。
 
-### Day 5 · 生产级实践
-监控、成本控制、输出评估，让你的应用稳定可用。
-
-### Day 6 · 替代方案
-**国内重点！** OpenAI API 在国内用不了？这一章覆盖：DeepSeek（¥1/百万token）、Groq（免费）、Ollama（本地免费）、硅基流动，统一封装切换只改1行。
-
-### Day 7 · LangChain 快速入门
-LangChain 是最流行的 LLM 应用框架，这章只讲最核心的3个组件（LLMChain、RetrievalQA、Agent），让你**代码量减少70%**的同时快速搭出 RAG 和 Agent 原型。
-
-### Day 8 · 完整项目实战
-从 0 搭建一个**可部署的私有知识库问答系统**：文档读取 → 分块 → Embedding → 向量库 → 检索 → 生成 → FastAPI API → Docker 部署。学完这章，你的前端/客户端就能调用你的专属 AI 服务了。
+### Day 5 · 综合应用
+**三合一**：生产级实践（监控/成本/评估）+ LangChain 快速入门（主流框架，代码减少70%）+ 完整项目实战（从0搭可部署的私有知识库系统，支持 API 和 Docker 部署）。
 
 ---
 
