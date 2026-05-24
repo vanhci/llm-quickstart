@@ -1,0 +1,52 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "hermes-agent",
+  "elements": [
+    {"type":"text","id":"title","x":170,"y":10,"text":"让 AI 帮我设计学习路径","fontSize":26,"fontFamily":1,"strokeColor":"#1e1e1e","originalText":"让 AI 帮我设计学习路径","autoResize":true},
+
+    {"type":"text","id":"subtitle","x":155,"y":45,"text":"人机协作的迭代闭环","fontSize":16,"fontFamily":1,"strokeColor":"#757575","originalText":"人机协作的迭代闭环","autoResize":true},
+
+    {"type":"rectangle","id":"you","x":60,"y":120,"width":140,"height":80,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#4a9eed","boundElements":[{"id":"t_you","type":"text"},{"id":"arr_you","type":"arrow"}]},
+    {"type":"text","id":"t_you","x":65,"y":145,"width":130,"height":40,"text":"我\n告诉AI：我会什么\n想做什么·约束条件","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"you","originalText":"我\n告诉AI：我会什么\n想做什么·约束条件","autoResize":true},
+
+    {"type":"arrow","id":"arr_you","x":200,"y":160,"width":100,"height":0,"points":[[0,0],[100,0]],"endArrowhead":"arrow","strokeColor":"#4a9eed","strokeWidth":2,"strokeStyle":"dashed"},
+
+    {"type":"rectangle","id":"ai","x":310,"y":100,"width":180,"height":120,"backgroundColor":"#d0bfff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","boundElements":[{"id":"t_ai","type":"text"},{"id":"arr_ai","type":"arrow"},{"id":"arr_back","type":"arrow"}]},
+    {"type":"text","id":"t_ai","x":315,"y":115,"width":170,"height":90,"text":"AI\n设计学习路径\n每一步附带\n可运行的代码","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"ai","originalText":"AI\n设计学习路径\n每一步附带\n可运行的代码","autoResize":true},
+
+    {"type":"arrow","id":"arr_ai","x":490,"y":160,"width":100,"height":0,"points":[[0,0],[100,0]],"endArrowhead":"arrow","strokeColor":"#8b5cf6","strokeWidth":2},
+
+    {"type":"rectangle","id":"run","x":600,"y":120,"width":140,"height":80,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_run","type":"text"},{"id":"arr_run","type":"arrow"}]},
+    {"type":"text","id":"t_run","x":605,"y":145,"width":130,"height":40,"text":"我\n跑代码\n验证AI说的是否真","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"run","originalText":"我\n跑代码\n验证AI说的是否真","autoResize":true},
+
+    {"type":"arrow","id":"arr_run","x":740,"y":160,"width":80,"height":0,"points":[[0,0],[80,0]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2},
+
+    {"type":"rectangle","id":"result","x":830,"y":100,"width":160,"height":120,"backgroundColor":"#fff3bf","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#f59e0b","boundElements":[{"id":"t_result","type":"text"},{"id":"ok_arr","type":"arrow"},{"id":"fail_arr","type":"arrow"}]},
+    {"type":"text","id":"t_result","x":835,"y":130,"width":150,"height":60,"text":"结果？\n跑通了？\n还是报错？","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"result","originalText":"结果？\n跑通了？\n还是报错？","autoResize":true},
+
+    {"type":"arrow","id":"ok_arr","x":910,"y":220,"width":0,"height":50,"points":[[0,0],[0,50]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2},
+    {"type":"text","id":"ok_label","x":920,"y":230,"width":60,"height":20,"text":"跑通","fontSize":14,"fontFamily":1,"strokeColor":"#22c55e","originalText":"跑通","autoResize":true},
+
+    {"type":"arrow","id":"fail_arr","x":860,"y":220,"width":0,"height":80,"points":[[0,0],[0,80]],"endArrowhead":"arrow","strokeColor":"#ef4444","strokeWidth":2},
+    {"type":"text","id":"fail_label","x":870,"y":240,"width":60,"height":20,"text":"报错","fontSize":14,"fontFamily":1,"strokeColor":"#ef4444","originalText":"报错","autoResize":true},
+
+    {"type":"rectangle","id":"success","x":830,"y":270,"width":160,"height":50,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_success","type":"text"}]},
+    {"type":"text","id":"t_success","x":835,"y":280,"width":150,"height":30,"text":"下一阶段","fontSize":16,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"success","originalText":"下一阶段","autoResize":true},
+
+    {"type":"rectangle","id":"fix","x":670,"y":300,"width":140,"height":80,"backgroundColor":"#ffc9c9","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#ef4444","boundElements":[{"id":"t_fix","type":"text"},{"id":"fix_arr","type":"arrow"}]},
+    {"type":"text","id":"t_fix","x":675,"y":320,"width":130,"height":40,"text":"反馈给AI\n描述错误信息","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"fix","originalText":"反馈给AI\n描述错误信息","autoResize":true},
+
+    {"type":"arrow","id":"fix_arr","x":740,"y":300,"width":0,"height":-140,"points":[[0,0],[0,-140]],"endArrowhead":"arrow","strokeColor":"#ef4444","strokeWidth":2,"strokeStyle":"dashed"},
+
+    {"type":"text","id":"fix_loop_label","x":750,"y":220,"text":"修正","fontSize":14,"fontFamily":1,"strokeColor":"#ef4444","originalText":"修正","autoResize":true},
+
+    {"type":"text","id":"key_label","x":60,"y":300,"text":"核心：AI设计路径，人验证真伪","fontSize":16,"fontFamily":1,"strokeColor":"#8b5cf6","originalText":"核心：AI设计路径，人验证真伪","autoResize":true},
+
+    {"type":"rectangle","id":"key_box","x":50,"y":320,"width":560,"height":60,"backgroundColor":"#e5dbff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","strokeWidth":1,"opacity":30,"boundElements":[]},
+    {"type":"text","id":"key_box_text","x":55,"y":335,"width":550,"height":40,"text":"一个人踩坑太累，一群人一起踩，效率高得多","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"key_box","originalText":"一个人踩坑太累，一群人一起踩，效率高得多","autoResize":true},
+
+    {"type":"text","id":"footer","x":50,"y":400,"text":"github.com/vanhci/llm-quickstart","fontSize":14,"fontFamily":1,"strokeColor":"#757575","originalText":"github.com/vanhci/llm-quickstart","autoResize":true}
+  ],
+  "appState": {"viewBackgroundColor": "#ffffff"}
+}

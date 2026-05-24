@@ -1,0 +1,79 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "hermes-agent",
+  "elements": [
+    {"type":"text","id":"title","x":200,"y":10,"text":"私有知识库系统架构","fontSize":26,"fontFamily":1,"strokeColor":"#1e1e1e","originalText":"私有知识库系统架构","autoResize":true},
+
+    {"type":"text","id":"subtitle","x":190,"y":45,"text":"从0到1构建可部署的 RAG 系统","fontSize":16,"fontFamily":1,"strokeColor":"#757575","originalText":"从0到1构建可部署的 RAG 系统","autoResize":true},
+
+    {"type":"text","id":"phase_in","x":20,"y":80,"text":"摄入流程","fontSize":16,"fontFamily":1,"strokeColor":"#4a9eed","originalText":"摄入流程","autoResize":true},
+
+    {"type":"rectangle","id":"bg_in","x":10,"y":100,"width":950,"height":110,"backgroundColor":"#dbe4ff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#4a9eed","strokeWidth":1,"opacity":30},
+
+    {"type":"rectangle","id":"doc","x":30,"y":130,"width":120,"height":60,"backgroundColor":"#ffd8a8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#f59e0b","boundElements":[{"id":"t_doc","type":"text"},{"id":"a_doc","type":"arrow"}]},
+    {"type":"text","id":"t_doc","x":35,"y":145,"width":110,"height":30,"text":"文档\nPDF/TXT/MD","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"doc","originalText":"文档\nPDF/TXT/MD","autoResize":true},
+
+    {"type":"arrow","id":"a_doc","x":150,"y":160,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#4a9eed","strokeWidth":2},
+
+    {"type":"rectangle","id":"chunk","x":230,"y":130,"width":120,"height":60,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#4a9eed","boundElements":[{"id":"t_chunk","type":"text"},{"id":"a_chunk","type":"arrow"}]},
+    {"type":"text","id":"t_chunk","x":235,"y":145,"width":110,"height":30,"text":"分块\nChunking","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"chunk","originalText":"分块\nChunking","autoResize":true},
+
+    {"type":"arrow","id":"a_chunk","x":350,"y":160,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#4a9eed","strokeWidth":2},
+
+    {"type":"rectangle","id":"emb","x":430,"y":130,"width":140,"height":60,"backgroundColor":"#d0bfff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","boundElements":[{"id":"t_emb","type":"text"},{"id":"a_emb","type":"arrow"}]},
+    {"type":"text","id":"t_emb","x":435,"y":145,"width":130,"height":30,"text":"Embedding\nOpenAI/Chroma","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"emb","originalText":"Embedding\nOpenAI/Chroma","autoResize":true},
+
+    {"type":"arrow","id":"a_emb","x":570,"y":160,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#8b5cf6","strokeWidth":2},
+
+    {"type":"rectangle","id":"vec","x":650,"y":130,"width":120,"height":60,"backgroundColor":"#c3fae8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_vec","type":"text"},{"id":"a_vec","type":"arrow"}]},
+    {"type":"text","id":"t_vec","x":655,"y":145,"width":110,"height":30,"text":"向量库\nChromaDB","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"vec","originalText":"向量库\nChromaDB","autoResize":true},
+
+    {"type":"arrow","id":"a_vec","x":770,"y":160,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2},
+
+    {"type":"rectangle","id":"store","x":850,"y":130,"width":100,"height":60,"backgroundColor":"#c3fae8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_store","type":"text"}]},
+    {"type":"text","id":"t_store","x":855,"y":145,"width":90,"height":30,"text":"持久化\n存储","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"store","originalText":"持久化\n存储","autoResize":true},
+
+    {"type":"text","id":"phase_query","x":20,"y":230,"text":"查询流程","fontSize":16,"fontFamily":1,"strokeColor":"#8b5cf6","originalText":"查询流程","autoResize":true},
+
+    {"type":"rectangle","id":"bg_query","x":10,"y":250,"width":950,"height":150,"backgroundColor":"#e5dbff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","strokeWidth":1,"opacity":30},
+
+    {"type":"rectangle","id":"query","x":30,"y":290,"width":120,"height":60,"backgroundColor":"#ffd8a8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#f59e0b","boundElements":[{"id":"t_query","type":"text"},{"id":"a_query","type":"arrow"}]},
+    {"type":"text","id":"t_query","x":35,"y":305,"width":110,"height":30,"text":"用户提问\n自然语言","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"query","originalText":"用户提问\n自然语言","autoResize":true},
+
+    {"type":"arrow","id":"a_query","x":150,"y":320,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#8b5cf6","strokeWidth":2},
+
+    {"type":"rectangle","id":"search","x":230,"y":290,"width":140,"height":60,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#4a9eed","boundElements":[{"id":"t_search","type":"text"},{"id":"a_search","type":"arrow"}]},
+    {"type":"text","id":"t_search","x":235,"y":305,"width":130,"height":30,"text":"向量检索\n相似度匹配","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"search","originalText":"向量检索\n相似度匹配","autoResize":true},
+
+    {"type":"arrow","id":"a_search","x":370,"y":320,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#4a9eed","strokeWidth":2},
+
+    {"type":"rectangle","id":"context","x":450,"y":290,"width":120,"height":60,"backgroundColor":"#c3fae8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_context","type":"text"},{"id":"a_context","type":"arrow"}]},
+    {"type":"text","id":"t_context","x":455,"y":305,"width":110,"height":30,"text":"召回上下文\nTop-K chunks","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"context","originalText":"召回上下文\nTop-K chunks","autoResize":true},
+
+    {"type":"arrow","id":"a_context","x":570,"y":320,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2},
+
+    {"type":"rectangle","id":"gen","x":650,"y":290,"width":120,"height":60,"backgroundColor":"#d0bfff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","boundElements":[{"id":"t_gen","type":"text"},{"id":"a_gen","type":"arrow"}]},
+    {"type":"text","id":"t_gen","x":655,"y":305,"width":110,"height":30,"text":"LLM生成\nRAG Prompt","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"gen","originalText":"LLM生成\nRAG Prompt","autoResize":true},
+
+    {"type":"arrow","id":"a_gen","x":770,"y":320,"width":70,"height":0,"points":[[0,0],[70,0]],"endArrowhead":"arrow","strokeColor":"#8b5cf6","strokeWidth":2},
+
+    {"type":"rectangle","id":"answer","x":850,"y":290,"width":100,"height":60,"backgroundColor":"#b2f2bb","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","boundElements":[{"id":"t_answer","type":"text"}]},
+    {"type":"text","id":"t_answer","x":855,"y":305,"width":90,"height":30,"text":"答案回复","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"answer","originalText":"答案回复","autoResize":true},
+
+    {"type":"text","id":"phase_deploy","x":20,"y":420,"text":"部署层","fontSize":16,"fontFamily":1,"strokeColor":"#22c55e","originalText":"部署层","autoResize":true},
+
+    {"type":"rectangle","id":"bg_deploy","x":10,"y":440,"width":950,"height":80,"backgroundColor":"#d3f9d8","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#22c55e","strokeWidth":1,"opacity":30},
+
+    {"type":"rectangle","id":"fastapi","x":300,"y":460,"width":200,"height":45,"backgroundColor":"#a5d8ff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#4a9eed","boundElements":[{"id":"t_fastapi","type":"text"},{"id":"a_fastapi","type":"arrow"}]},
+    {"type":"text","id":"t_fastapi","x":305,"y":468,"width":190,"height":30,"text":"FastAPI 接口层","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"fastapi","originalText":"FastAPI 接口层","autoResize":true},
+
+    {"type":"arrow","id":"a_fastapi","x":500,"y":482,"width":80,"height":0,"points":[[0,0],[80,0]],"endArrowhead":"arrow","strokeColor":"#22c55e","strokeWidth":2},
+
+    {"type":"rectangle","id":"docker","x":590,"y":460,"width":200,"height":45,"backgroundColor":"#d0bfff","fillStyle":"solid","roundness":{"type":3},"strokeColor":"#8b5cf6","boundElements":[{"id":"t_docker","type":"text"}]},
+    {"type":"text","id":"t_docker","x":595,"y":468,"width":190,"height":30,"text":"Docker 容器化部署","fontSize":14,"fontFamily":1,"strokeColor":"#1e1e1e","textAlign":"center","verticalAlign":"middle","containerId":"docker","originalText":"Docker 容器化部署","autoResize":true},
+
+    {"type":"text","id":"footer","x":20,"y":540,"text":"github.com/vanhci/llm-quickstart","fontSize":14,"fontFamily":1,"strokeColor":"#757575","originalText":"github.com/vanhci/llm-quickstart","autoResize":true}
+  ],
+  "appState": {"viewBackgroundColor": "#ffffff"}
+}

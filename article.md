@@ -26,6 +26,8 @@
 
 具体做法是：
 
+![人机协作迭代闭环](https://excalidraw.com/#json=pKfR8XyrqEdUEBIm5Ph3S,EQ6twqlw0ovpXkuIyfAMnw)
+
 1. 我告诉 AI 我会什么、我想做什么、我的约束条件是什么
 2. AI 设计一套学习路径，每一步都附带可运行的代码
 3. 我跑代码，验证它说的是不是真的
@@ -53,6 +55,8 @@
 ---
 
 ## 阶段一：8天，建立完整的开发地图
+
+![LLM应用开发·8天学习路线图](https://excalidraw.com/#json=lS3cMMHd4RxksnSlUHttj,L9V7sOQroNQK4kcJdIjs2g)
 
 ### 第1天：Prompt工程
 
@@ -104,6 +108,8 @@ Demo 跑通了，但上线还差得远。
 手写 RAG 链路代码很长？LangChain 可以帮你**减少 70% 的代码量**。
 
 最后两天，从 0 到 1 完成一个**可部署的私有知识库系统**：文档读取 → 分块 → Embedding → 向量库 → 检索生成 → FastAPI 接口 → Docker 部署。
+
+![私有知识库系统架构](https://excalidraw.com/#json=ThckDAk5GMF6RkGCVFvDH,9E7F9GifS_ms_Sl0ULpgbQ)
 
 ---
 
